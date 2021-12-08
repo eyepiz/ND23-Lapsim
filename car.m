@@ -12,11 +12,13 @@ classdef car
    end
    methods
        % Default Constructor
-       function obj = car(mass, wb, tire, eng, brake, d_t)
+       function obj = car(mass, wb, tire, eng, chass, ele, brake, d_t)
           obj.mass = mass;
           obj.wheel_base = wb;
           obj.tire = tire;
           obj.engine = eng;
+          obj.chassis = chass;
+          obj.electrical = ele;
           obj.brake = brake;
           obj.drivetrain = d_t;
        end

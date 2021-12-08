@@ -7,7 +7,9 @@
 function straight = build_straight(length)
 
 end
+function turn = build_turn()
 
+end
 function acceleration = build_acc(length)
     acceleration = build_straight(length);
 end

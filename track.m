@@ -4,14 +4,16 @@
 % Functions needed include functions to build straights and turns, as well
 % as the entire courses themselves, built using the straights and turns
 % functions
-function straight = build_straight(length)
-
+classdef track
+    
 end
+
 function turn = build_turn()
 
 end
-function acceleration = build_acc(length)
-    acceleration = build_straight(length);
+
+function acceleration_track = build_acc(length)
+    acceleration_track = build_straight(length);
 end
 
 function endurance = build_endurance()
@@ -25,3 +27,4 @@ end
 function autocross = build_autocross()
 
 end
+

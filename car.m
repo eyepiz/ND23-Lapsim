@@ -3,6 +3,8 @@ classdef car
       mass
       wheel_base
       tire
+      aero % class for aerodynamic values (currently just for
+           % aerodynamic drag)
       engine % class for the engine subsystem
       chassis % class for the chassis subsytem
       electrical % class for the electrical subsystem

@@ -5,7 +5,14 @@
 % as the entire courses themselves, built using the straights and turns
 % functions
 classdef track
-    
+    properties
+       parts % the series of turns and straights that make up a lap 
+    end
+    methods
+        function t = track()
+            t.parts = [];
+        end
+    end
 end
 
 function turn = build_turn()

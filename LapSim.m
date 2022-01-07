@@ -1,4 +1,6 @@
-clc
 clear
+clc
 
-acc = build_acc(75);
+a = aero(12);
+drag = a.find_drag();
+acc = straight(75);

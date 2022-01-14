@@ -6,14 +6,18 @@
 %Date: January 14,2022
 %Collaborated with Fighting Irish Racing Team: VD and Suspension Subsystems 
 
-% Clear memory
-clear
-
-%Clear Command Window
-clc
 
 %% Acceleration Event
-
+classdef scoreboard
+    properties
+        acceleration_score
+        skidpad_score
+        
+    end
+    methods
+        
+    end
+end
 %define needed variables
 acc_t_your = input("What was your time for the accelation event?  ");
 %Data recieved from 2019 FSAE Michigan
@@ -61,7 +65,6 @@ skip_score = (71.5 * (((skip_t_max/skip_t_your)^2)-1)/( ...
 %Display score
 disp("You recieved a: ")
 disp(skip_score);
-end
 end
 disp("----------------------------------");
 %% Auto Cross Event

@@ -6,6 +6,8 @@ clc
 % here
 
 car_mass = 1000; % in kilograms
+front_mass = 500;
+rear_mass = 500;
 wheel_base = 2; % in meters
 aero_surface_area = 8; % in meters
 

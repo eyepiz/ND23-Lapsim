@@ -13,8 +13,6 @@ clear
 clc
 
 %% Accelartion Event
-clc
-clear
 %define needed variables
 acc_t_your = input("What was your time for the accelation event?  ");
 %Data recieved from 2019 FSAE Michigan
@@ -26,7 +24,7 @@ if (acc_t_your>acc_t_max)
     acc_score=4.5;
     disp("Your score was above the maxium time.")
     disp(acc_score);
-else if (acc_t_your < acc_t_min) 
+elseif (acc_t_your < acc_t_min) 
    %your score if your car was faster than any other car that year
    disp("Your time was faster than any other car.")
    acc_score = 100;
@@ -36,7 +34,6 @@ acc_score = (95.5 * ((acc_t_max/acc_t_your)-1)/((acc_t_max/acc_t_min)-1))+4.5;
 %Display score
 disp("You recieved a: ")
 disp(acc_score);
-end
 end
 disp("----------------------------------");
 
@@ -52,7 +49,7 @@ if (skip_t_your>skip_t_max)
     skip_score=3.5;
     disp("Your score was above the maxium time.")
     disp(skip_score);
-else if (skip_t_your < skip_t_min) 
+elseif (skip_t_your < skip_t_min) 
    %your score if your car was faster than any other car that year
    disp("Your time was faster than any other car.")
    skip_score = 75;
@@ -63,7 +60,6 @@ skip_score = (71.5 * (((skip_t_max/skip_t_your)^2)-1)/( ...
 %Display score
 disp("You recieved a: ")
 disp(skip_score);
-end
 end
 disp("----------------------------------");
 %% Auto Cross Event
@@ -78,7 +74,7 @@ if (auto_t_your>auto_t_max)
     auto_score=6.5;
     disp("Your score was above the maxium time.")
     disp(auto_score);
-else if (auto_t_your < auto_t_min) 
+elseif (auto_t_your < auto_t_min) 
    %your score if your car was faster than any other car that year
    disp("Your time was faster than any other car.")
    auto_score = 125;
@@ -88,7 +84,6 @@ auto_score = (118.5 * ((auto_t_max/auto_t_your)-1)/((auto_t_max/auto_t_min)-1))+
 %Display score
 disp("You recieved a: ")
 disp(auto_score);
-end
 end
 disp("----------------------------------");
 %% Endurance Event
@@ -103,7 +98,7 @@ if (endu_t_your>endu_t_max)
     endu_score=25;
     disp("Your score was above the maxium time.")
     disp(endu_score);
-else if (endu_t_your < endu_t_min) 
+elseif (endu_t_your < endu_t_min) 
    %your score if your car was faster than any other car that year
    disp("Your time was faster than any other car.")
    endu_score=275;
@@ -113,7 +108,6 @@ else
 %Display score
 disp("You recieved a: ")
 disp(endu_score);
-end
 end
 disp("----------------------------------");
 

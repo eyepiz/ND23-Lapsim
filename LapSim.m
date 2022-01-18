@@ -4,8 +4,9 @@ clc
 %% Define Parameters
 % All the variables that may be tweaked for scripting will be defined
 % here
-
-car_mass = 1000; % in kilograms
+driver_weight = 75;
+wheel_radius = 1;
+car_mass = 1000; % in kilograms, does not include driver
 front_mass = 500;
 rear_mass = 500;
 wheel_base = 2; % in meters

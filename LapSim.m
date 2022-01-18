@@ -22,19 +22,21 @@ aero_surface_area = 8; % in meters
 
 %% Run Lap Simulations
 % Calls the functions that simulate the running of each lap
-acceleration_time = 0; % all times in seconds
-skidpad_time = 0;
-endurance_time = 0;
-autocross_time = 0;
+acceleration_time = 1; % all times in seconds
+skidpad_time = 1;
+endurance_time = 1;
+autocross_time = 1;
 
 %% Calculate Scores for Each Lap
 % Finds the scores each lap would score and adds them up for a total
 % score
-acceleration_score = 0;
-skidpad_score = 0;
-endurance_score = 0;
-autocross_score = 0;
-total_score = 0;
+s = scoreboard;
+s = calc_acc(s, acceleration_time);
+s = calc_skid(s, skidpad_time);
+s = calc_auto(s, endurance_time);
+s = calc_endure(s, autocross_time);
+s = calc_total(s);
+
 
 %% Display Results
 % print the times of each lap in the command window, as well as the
@@ -45,23 +47,23 @@ fprintf("Program ran successfully \n");
 % Acceleration
 fprintf("Car completed the acceleration circuit in %f seconds,\n",...
     acceleration_time);
-fprintf("scoring %f points.\n", acceleration_score);
+fprintf("scoring %f points.\n", s.acceleration_score);
 
 % Skidpad
 fprintf("Car completed the skidpad circuit in %f seconds,\n",...
     skidpad_time);
-fprintf("scoring %f points.\n", skidpad_score);
+fprintf("scoring %f points.\n", s.skidpad_score);
 
 % Autocross
 fprintf("Car completed the autocross circuit in %f seconds,\n",...
     autocross_time);
-fprintf("scoring %f points.\n", autocross_score);
+fprintf("scoring %f points.\n", s.autocross_score);
 
 % Endurance
 fprintf("Car completed the endurance circuit in %f seconds,\n",...
     endurance_time);
-fprintf("scoring %f points.\n", endurance_score);
+fprintf("scoring %f points.\n", s.endurance_score);
 
 % Total
-fprintf("Car scored %f total points over all four evens.\n", ...
-    total_score);
+fprintf("Car scored %f total points over all four events.\n", ...
+    s.total_score);

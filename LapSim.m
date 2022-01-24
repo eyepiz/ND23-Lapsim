@@ -4,14 +4,20 @@ clc
 %% Define Parameters
 % All the variables that may be tweaked for scripting will be defined
 % here
-driver_weight = 75;
-wheel_radius = 1;
-car_mass = 1000; % in kilograms, does not include driver
-front_mass = 500;
-rear_mass = 500;
-wheel_base = 2; % in meters
-aero_surface_area = 8; % in meters
-
+% Tire Parameters
+tire_camber = 1;
+tire_pressure = 1;
+t = tire(tire_camber, tire_pressure);
+% Car Parameters
+car_mass = 1000;
+car_w_b = 1.5;
+car_rear_dist = 0.5;
+car_wheel_radius = 0.5;
+car_cg = 0.2;
+car_front_width = 1;
+car_rear_width = 1;
+c = car(car_mass, car_w_b, car_rear_dist, car_wheel_radius, car_cg,...
+    car_front_width, car_rear_width, t);
 %% Initialize Lapsim
 % Declare all the variables needed to set up the car, tracks and scoring
 % system
@@ -23,10 +29,10 @@ aero_surface_area = 8; % in meters
 
 %% Run Lap Simulations
 % Calls the functions that simulate the running of each lap
-acceleration_time = 1; % all times in seconds
-skidpad_time = 1;
-endurance_time = 1;
-autocross_time = 1;
+acceleration_time = 100; % all times in seconds
+skidpad_time = 100;
+endurance_time = 100;
+autocross_time = 100;
 
 %% Calculate Scores for Each Lap
 % Finds the scores each lap would score and adds them up for a total
@@ -43,28 +49,7 @@ s = calc_total(s);
 % print the times of each lap in the command window, as well as the
 % associated scores for each one and the total score. Then display our
 % performance visually to better understand the scores.
-fprintf("Program ran successfully \n");
-
-% Acceleration
-fprintf("Car completed the acceleration circuit in %f seconds,\n",...
-    acceleration_time);
-fprintf("scoring %f points.\n", s.acceleration_score);
-
-% Skidpad
-fprintf("Car completed the skidpad circuit in %f seconds,\n",...
-    skidpad_time);
-fprintf("scoring %f points.\n", s.skidpad_score);
-
-% Autocross
-fprintf("Car completed the autocross circuit in %f seconds,\n",...
+display_scores(s, acceleration_time, skidpad_time, endurance_time,...
     autocross_time);
-fprintf("scoring %f points.\n", s.autocross_score);
-
-% Endurance
-fprintf("Car completed the endurance circuit in %f seconds,\n",...
-    endurance_time);
-fprintf("scoring %f points.\n", s.endurance_score);
-
-% Total
-fprintf("Car scored %f total points over all four events.\n", ...
-    s.total_score);
+%% Plotting
+plot_scores(s);

@@ -1,30 +1,26 @@
 classdef car
-   properties
-      mass
-      wheel_base
-      tire
-      aero % class for aerodynamic values (currently just for
-           % aerodynamic drag)
-      engine % class for the engine subsystem
-      chassis % class for the chassis subsytem
-      electrical % class for the electrical subsystem
-      brake % class for the brakes subsystem
-      drivetrain % class for the drivetrain subsystem
-      % Add all other properties to the default constructor function
-   end
-   methods
-       % Default Constructor
-       function obj = car(mass, wb, tire, eng, chass, ele, brake, d_t)
-          obj.mass = mass;
-          obj.wheel_base = wb;
-          obj.tire = tire;
-          obj.engine = eng;
-          obj.chassis = chass;
-          obj.electrical = ele;
-          obj.brake = brake;
-          obj.drivetrain = d_t;
-       end
-      %% Functions Needed:
-      
-   end
+    properties
+        mass
+        wheel_base
+        rear_weight_dist
+        front_weight_dist
+        wheel_radius
+        center_gravity
+        front_width
+        rear_width
+        tire
+    end
+    methods
+        function obj = car(m, wb, rwd, wr, cg, fwid, rwid, t)
+            obj.mass = m;
+            obj.wheel_base = wb;
+            obj.rear_weight_dist = rwd;
+            obj.front_weight_dist = 1 - rwd;
+            obj.wheel_radius = wr;
+            obj.center_gravity = cg;
+            obj.front_width = fwid;
+            obj.rear_width = rwid;
+            obj.tire = t;
+        end
+    end
 end

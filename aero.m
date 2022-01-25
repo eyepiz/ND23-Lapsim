@@ -12,9 +12,8 @@ classdef aero
             obj.cd = 0.56;
         end
         
-        function drag = find_drag()
-            velocity = 10;
-            drag = obj.cd * (obj.density * velocity * velocity)/2 * obj.area;
+        function drag = find_drag(ar, velocity)
+            drag = ar.cd * (ar.density * velocity * velocity)/2 * ar.area;
         end
     end
 end

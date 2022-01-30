@@ -4,10 +4,17 @@ clc
 %% Define Parameters
 % All the variables that may be tweaked for scripting will be defined
 % here
+% Aero Parameters
+front_area = 1;
+a = aero(front_area);
+% Engine Parameters
+horse_power = 1;
+e = engine(horse_power);
 % Tire Parameters
 tire_camber = 1;
 tire_pressure = 1;
-t = tire(tire_camber, tire_pressure);
+tire_circumference = 1;
+t = tire(tire_camber, tire_pressure, tire_circumference);
 % Car Parameters
 car_mass = 1000;
 car_w_b = 1.5;
@@ -17,7 +24,7 @@ car_cg = 0.2;
 car_front_width = 1;
 car_rear_width = 1;
 c = car(car_mass, car_w_b, car_rear_dist, car_wheel_radius, car_cg,...
-    car_front_width, car_rear_width, t);
+    car_front_width, car_rear_width, t, a, e);
 %% Initialize Lapsim
 % Declare all the variables needed to set up the car, tracks and scoring
 % system
@@ -29,8 +36,8 @@ c = car(car_mass, car_w_b, car_rear_dist, car_wheel_radius, car_cg,...
 
 %% Run Lap Simulations
 % Calls the functions that simulate the running of each lap
-acceleration_time = 100; % all times in seconds
-skidpad_time = 100;
+acceleration_time = acceleration(75, c, e); % all times in seconds
+skidpad_time = skidpad(18.25, c);
 endurance_time = 100;
 autocross_time = 100;
 
@@ -52,4 +59,4 @@ s = calc_total(s);
 display_scores(s, acceleration_time, skidpad_time, endurance_time,...
     autocross_time);
 %% Plotting
-plot_scores(s);
+%plot_scores(s);

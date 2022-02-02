@@ -8,15 +8,17 @@ clc
 front_area = 1;
 a = aero(front_area);
 % Engine Parameters
-horse_power = 1;
+horse_power = 16;
 e = engine(horse_power);
 % Tire Parameters
 tire_camber = 1;
 tire_pressure = 1;
 tire_circumference = 1;
-t = tire(tire_camber, tire_pressure, tire_circumference);
+tire_front_load = 0.6;
+tire_rear_load = 0.4;
+t = tire(tire_camber, tire_pressure, tire_circumference, tire_front_load, tire_rear_load);
 % Car Parameters
-car_mass = 1000;
+car_mass = 300;
 car_w_b = 1.5;
 car_rear_dist = 0.5;
 car_wheel_radius = 0.5;
@@ -36,8 +38,8 @@ c = car(car_mass, car_w_b, car_rear_dist, car_wheel_radius, car_cg,...
 
 %% Run Lap Simulations
 % Calls the functions that simulate the running of each lap
-acceleration_time = acceleration(75, c, e); % all times in seconds
-skidpad_time = skidpad(18.25, c);
+acceleration_time = acceleration(246.063, c, e, a); % all times in seconds
+skidpad_time = skidpad(18.25, c, t);
 endurance_time = 100;
 autocross_time = 100;
 

@@ -28,18 +28,18 @@ classdef car
         end
         
         function straight_acceleration_s = str_acc_s(velocity, e,...
-                c)
+                c, a)
             if velocity > 0
-                straight_acceleration_s = 550*(22/velocity)*(e.hp/c.mass);
+                straight_acceleration_s = c.str_acc_f(c, velocity, e, a);
             else
                 straight_acceleration_s = 550*(e.hp/c.mass);
             end
         end
         
-        function straight_acceleration_f = str_acc_f(mass, velocity, a)
+        function straight_acceleration_f = str_acc_f(c, velocity, e, a)
             drag = a.find_drag(a, velocity);
-            straight_acceleration_f = (tractive_force - rolling_resistance...
-                - drag - hitch - mass*Sin(angle))/mass;
+            straight_acceleration_f = ((550*22/velocity*e.hp) - drag)...
+                /c.mass;
         end
         
         function angle = turn_angle(c, radius)

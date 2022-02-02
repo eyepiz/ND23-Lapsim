@@ -5,7 +5,7 @@ classdef aero
         cd % Base value for drag coefficient without aerodynamics for SAE
            % car.
     end
-    methods
+    methods(Static)
         function obj = aero(ar)
             obj.area = ar;
             obj.density = 1.225;

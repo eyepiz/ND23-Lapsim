@@ -3,7 +3,7 @@ clear
 clc
 %% Define Parameters
 % All the variables that may be tweaked for scripting will be defined
-% here
+% here all dimensions are in feet or pounds
 % Aero Parameters
 front_area = 1;
 a = aero(front_area);
@@ -13,13 +13,13 @@ e = engine(horse_power);
 % Tire Parameters
 tire_camber = 1;
 tire_pressure = 1;
-tire_circumference = 1;
+tire_circumference = 4.2;
 tire_front_load = 0.6;
 tire_rear_load = 0.4;
 t = tire(tire_camber, tire_pressure, tire_circumference, tire_front_load, tire_rear_load);
 % Car Parameters
-car_mass = 300;
-car_w_b = 1.5;
+car_mass = 500;
+car_w_b = 5;
 car_rear_dist = 0.5;
 car_wheel_radius = 0.5;
 car_cg = 0.2;
@@ -35,11 +35,12 @@ c = car(car_mass, car_w_b, car_rear_dist, car_wheel_radius, car_cg,...
 %skidpad = build_skidpad_function(parameters);
 %endurance = build_endurance_function(parameters);
 %autocross = build_autocross_function(parameters);
-
+endurance = load("track_endurance_2019.mat");
+autocross = load("track_autocross_2019.mat");
 %% Run Lap Simulations
 % Calls the functions that simulate the running of each lap
 acceleration_time = acceleration(246.063, c, e, a); % all times in seconds
-skidpad_time = skidpad(18.25, c, t);
+skidpad_time = skidpad(60, c, t);
 endurance_time = 100;
 autocross_time = 100;
 
@@ -61,4 +62,8 @@ s = calc_total(s);
 display_scores(s, acceleration_time, skidpad_time, endurance_time,...
     autocross_time);
 %% Plotting
-%plot_scores(s);
+% p = plotter;
+% p.plot_scores(s);
+% p.plot_velocity(e, c, a);
+% a.cd = 0.56;
+% p.plot_velocity(e, c, a);

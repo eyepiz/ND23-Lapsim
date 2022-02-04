@@ -8,7 +8,7 @@ classdef aero
     methods(Static)
         function obj = aero(ar)
             obj.area = ar;
-            obj.density = 1.225;
+            obj.density = 0.0765;
             obj.cd = 0.73;
         end
         

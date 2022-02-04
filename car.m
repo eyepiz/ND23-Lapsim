@@ -8,12 +8,13 @@ classdef car
         center_gravity
         front_width
         rear_width
+        brakes
         tire
         aerodynamics
         engine
     end
     methods(Static)
-        function obj = car(m, wb, rwd, wr, cg, fwid, rwid, t, a, eng)
+        function obj = car(m, wb, rwd, wr, cg, fwid, rwid, t, a, eng, b)
             obj.mass = m;
             obj.wheel_base = wb;
             obj.rear_weight_dist = rwd;
@@ -25,6 +26,7 @@ classdef car
             obj.tire = t;
             obj.aerodynamics = a;
             obj.engine = eng;
+            obj.brakes = b;
         end
         
         function straight_acceleration_s = str_acc_s(velocity, e,...
@@ -46,14 +48,26 @@ classdef car
             angle = c.wheel_base/radius * 180/pi;
         end
         
-        function turn_velocity = find_turn_velocity(c, steering_angle,...
-                turn_radius)
-            turn_velocity = sqrt((steering_angle-57.3*c.wheel_base...
-                /turn_radius)*9.8*turn_radius);
+        function turn_velocity = find_turn_velocity(c, angle,...
+                radius, t)
+            stiffness = c.calc_stiffness(c);
+            turn_velocity = sqrt((32.2*radius*(angle-57.3*c.wheel_base...
+        *(1/radius)))/((t.front_load*c.mass/stiffness - t.rear_load*c.mass/stiffness)));
         end
         
-        function cornering_stiffness = calc_stiffness(velocity, c, radius)
-            
+        function cornering_stiffness = calc_stiffness(c)
+            cornering_stiffness = c.mass * 0.3 * 32.2 * 4.448;
+        end
+        
+        function deceleration = braking(c, a, velocity)
+            total_force = c.decel_forces(c.t, a, velocity);
+            deceleration = total_force/c.mass;
+        end
+        
+        function decel_force = decel_forces(t, a, velocity)
+            drag = a.find_drag(velocity);
+            brakes = brake_force(t);
+            decel_force = drag + brakes;
         end
         
         function Fy = lateral_force(c, velocity, radius)

@@ -1,17 +1,17 @@
 %% Clear command window and memory
 clear
-% clc
+clc
 %% Define Parameters
 % All the variables that may be tweaked for scripting will be defined
 % here all dimensions are in feet or pounds
 % Aero Parameters
-front_area = 2;
+front_area = 9.68;
 a = aero(front_area);
 % Brake Parameters
 torque = 800;
 b = brakes(torque);
 % Engine Parameters
-horse_power = 25;
+horse_power = 30;
 e = engine(horse_power);
 % Tire Parameters
 tire_camber = 1;
@@ -63,8 +63,8 @@ s = calc_total(s);
 display_scores(s, acceleration_time, skidpad_time, endurance_time,...
     autocross_time);
 %% Plotting
-% p = plotter;
-% p.plot_scores(s);
+p = plotter;
+p.plot_scores(s);
 % p.plot_velocity(e, c, a);
 % a.cd = 0.56;
 % p.plot_velocity(e, c, a);

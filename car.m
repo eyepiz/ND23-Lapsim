@@ -73,5 +73,9 @@ classdef car
         function Fy = lateral_force(c, velocity, radius)
             Fy = (c.mass*velocity*velocity)/radius;
         end
+        
+        function max_traction = find_max_traction()
+            
+        end
     end
 end

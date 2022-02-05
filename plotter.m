@@ -1,37 +1,34 @@
 classdef plotter
     methods(Static)
         function plot_scores(s)
-            x = 1:1:5;
+            x = categorical({'Acceleration','Skidpad','Autocross','Endurance','Total'});
             our_scores = [s.acceleration_score, s.skidpad_score, s.autocross_score, ...
                 s.endurance_score, s.total_score];
             max_scores = [100, 75, 125, 275, 575];
             figure
-            plot(x, our_scores, x, max_scores, "--");
+            combo = [our_scores; max_scores];
+            bar(x, combo);
+            legend('Location','bestoutside')
             legend("Expected Score", "Maximum Score");
             xlabel("Event Number");
             ylabel("Score");
             title 'Expected Score vs Maximum Score'
         end
         
-        function plot_velocity(e, c, a)
-            velocity = 0;
-            time = 0;
-            velocity_ar = [];
-            acceleration = c.str_acc_s(velocity, e, c, a);
-            while (acceleration > 1)
-                %fprintf("%f\n", acceleration);
-                velocity = velocity + acceleration;
-                velocity_ar(end+1) = velocity;
-                time = time + 1;
-                acceleration = c.str_acc_s(velocity, e, c, a);
-            end
-            x = 1:1:time;
+        function plot_velocity(v1, v2, v3)
+            x1 = 1:1:length(v1);
+            x2 = 1:1:length(v2);
+            x3 = 1:1:length(v3);
             figure
-            plot(x, velocity_ar);
+            plot(x1, v1, "b", x2, v2, "r", x3, v3, "g");
+            xticks([0 1000 2000 3000 4000 5000])
+            xticklabels({'0','1','2', '3', '4', '5'})
+            legend('Location','bestoutside')
+            legend("400 lbs", "500 lbs", "600 lbs");
             xlabel("Time (seconds)");
             ylabel("Velocity (feet per second)");
             grid on
-            title 'Straight Line Acceleration'
+            title 'Affect of Weight on Acceleration Performance'
         end
         
         function velocity_comparision(e1, c1, a1, e2, c2, a2, e3, c3, a3)

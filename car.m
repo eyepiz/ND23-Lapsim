@@ -40,7 +40,7 @@ classdef car
         
         function straight_acceleration_f = str_acc_f(c, velocity, e, a)
             drag = a.find_drag(a, velocity);
-            straight_acceleration_f = ((550*22/velocity*e.hp) - drag)...
+            straight_acceleration_f = ((550*32.2/velocity*e.hp) - drag)...
                 /c.mass;
         end
         

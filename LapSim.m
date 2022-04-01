@@ -14,7 +14,7 @@ b = brakes(torque);
 horse_power = 30;
 e = engine(horse_power);
 % Tire Parameters
-tire_camber = 1;
+tire_camber = 1; % pointing inside (meaning it's negative)
 tire_pressure = 15;
 tire_circumference = 4.2;
 tire_front_load = 0.49;
